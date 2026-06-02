@@ -21,10 +21,10 @@ build-backend = "setuptools.build_meta"
 [dependency-groups]
 dev = [
     "nox>=2026.4.10",
-    "prek>=0.3.8",
-    "ruff>=0.15.10",
-    "mypy>=1.20.0",
-    "ty>=0.0.34",
+    "prek>=0.4.1",
+    "ruff>=0.15.14",
+    "mypy>=2.1.0",
+    "ty>=0.0.39",
 ]
 docs = [
     "sphinx>=8.1.0",
@@ -33,7 +33,7 @@ docs = [
     "releases>=2.1.1",
 ]
 tests = [
-    "coverage>=7.13.4",
+    "coverage>=7.14.0",
     "pytest>=9.0.3",
     # Extensions
     "pytest-randomly>=4.0.1",
