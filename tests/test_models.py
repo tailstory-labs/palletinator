@@ -26,19 +26,19 @@ def test_cell_placement_json_round_trip() -> None:
 def test_cell_is_frozen() -> None:
     cell = Cell(value="X")
     with pytest.raises(ValidationError):
-        cell.value = "Y"
+        cell.value = "Y"  # ty: ignore[invalid-assignment] -- asserting the frozen model rejects this at runtime
 
 
 def test_pallet_is_frozen() -> None:
     pallet = Pallet(sides=[])
     with pytest.raises(ValidationError):
-        pallet.sides = []
+        pallet.sides = []  # ty: ignore[invalid-assignment] -- asserting the frozen model rejects this at runtime
 
 
 def test_cell_placement_is_frozen() -> None:
     placement = CellPlacement(value="X", sides=[1], columns=[1])
     with pytest.raises(ValidationError):
-        placement.value = "Y"
+        placement.value = "Y"  # ty: ignore[invalid-assignment] -- asserting the frozen model rejects this at runtime
 
 
 def test_frozen_models_still_allow_in_place_extras_mutation() -> None:
