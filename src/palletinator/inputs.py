@@ -1,11 +1,11 @@
 """Input types for the pallet builder."""
 
-from dataclasses import dataclass, field
 from typing import Any
 
+from pydantic import BaseModel, Field
 
-@dataclass(frozen=True, slots=True)
-class CellPlacement:
+
+class CellPlacement(BaseModel, frozen=True):
     """Specification for where a cell goes on a pallet build.
 
     Attributes
@@ -20,9 +20,14 @@ class CellPlacement:
         Open-ended metadata bag for caller-defined fields. A copy is
         attached to every emitted ``Cell`` so callers can mutate per-cell
         state without cross-talk.
+
+    Notes
+    -----
+    Serializable to and from JSON with pydantic's built-ins:
+    ``placement.model_dump_json()`` and ``CellPlacement.model_validate_json(data)``.
     """
 
     value: str
     sides: list[int]
     columns: list[int]
-    extras: dict[str, Any] = field(default_factory=dict)
+    extras: dict[str, Any] = Field(default_factory=dict)
