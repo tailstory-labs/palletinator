@@ -1,6 +1,6 @@
 [project]
 name = "palletinator"
-version = "0.1.0"
+version = "0.2.0"
 description = "Pallet-inator"
 authors = [
     { name = "Bradley Reynolds", email = "bradley.reynolds@tailstory.dev" },
@@ -8,7 +8,9 @@ authors = [
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "pydantic>=2.12",
+]
 
 [project.urls]
 repository = "https://github.com/tailstory-labs/palletinator"
@@ -70,6 +72,7 @@ convention = "numpy"
 
 [tool.mypy]
 pretty = true
+plugins = ["pydantic.mypy"]
 
 [tool.coverage.run]
 branch = true
