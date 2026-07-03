@@ -2,10 +2,10 @@
 
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
-class CellPlacement(BaseModel):
+class CellPlacement(BaseModel, frozen=True):
     """Specification for where a cell goes on a pallet build.
 
     Attributes
@@ -26,8 +26,6 @@ class CellPlacement(BaseModel):
     Serializable to and from JSON with pydantic's built-ins:
     ``placement.model_dump_json()`` and ``CellPlacement.model_validate_json(data)``.
     """
-
-    model_config = ConfigDict(frozen=True)
 
     value: str
     sides: list[int]

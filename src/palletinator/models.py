@@ -2,10 +2,10 @@
 
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
-class Cell(BaseModel):
+class Cell(BaseModel, frozen=True):
     """A single cell within a pallet column.
 
     Attributes
@@ -21,31 +21,25 @@ class Cell(BaseModel):
     ``cell.model_dump_json()`` and ``Cell.model_validate_json(data)``.
     """
 
-    model_config = ConfigDict(frozen=True)
-
     value: str
     extras: dict[str, Any] = Field(default_factory=dict)
 
 
-class Column(BaseModel):
+class Column(BaseModel, frozen=True):
     """A column on a pallet side, with cells ordered top-to-bottom."""
-
-    model_config = ConfigDict(frozen=True)
 
     number: int
     cells: list[Cell]
 
 
-class Side(BaseModel):
+class Side(BaseModel, frozen=True):
     """A side of a pallet, with columns ordered left-to-right by column number."""
-
-    model_config = ConfigDict(frozen=True)
 
     number: int
     columns: list[Column]
 
 
-class Pallet(BaseModel):
+class Pallet(BaseModel, frozen=True):
     """A fully-resolved pallet build.
 
     Attributes
@@ -60,8 +54,6 @@ class Pallet(BaseModel):
     Serializable to and from JSON with pydantic's built-ins:
     ``pallet.model_dump_json()`` and ``Pallet.model_validate_json(data)``.
     """
-
-    model_config = ConfigDict(frozen=True)
 
     sides: list[Side]
     extras: dict[str, Any] = Field(default_factory=dict)
