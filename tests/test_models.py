@@ -1,7 +1,7 @@
 """Tests for the pydantic data models."""
 
 import pytest
-from pydantic import ValidationError
+from pydantic import BaseModel, ValidationError
 
 from palletinator import Cell, CellPlacement, Pallet, build_pallet
 
@@ -23,22 +23,17 @@ def test_cell_placement_json_round_trip() -> None:
     assert CellPlacement.model_validate_json(placement.model_dump_json()) == placement
 
 
-def test_cell_is_frozen() -> None:
-    cell = Cell(value="X")
+@pytest.mark.parametrize(
+    ("model", "field", "value"),
+    [
+        (Cell(value="X"), "value", "Y"),
+        (Pallet(sides=[]), "sides", []),
+        (CellPlacement(value="X", sides=[1], columns=[1]), "value", "Y"),
+    ],
+)
+def test_models_are_frozen(model: BaseModel, field: str, value: object) -> None:
     with pytest.raises(ValidationError):
-        cell.value = "Y"  # ty: ignore[invalid-assignment] -- asserting the frozen model rejects this at runtime
-
-
-def test_pallet_is_frozen() -> None:
-    pallet = Pallet(sides=[])
-    with pytest.raises(ValidationError):
-        pallet.sides = []  # ty: ignore[invalid-assignment] -- asserting the frozen model rejects this at runtime
-
-
-def test_cell_placement_is_frozen() -> None:
-    placement = CellPlacement(value="X", sides=[1], columns=[1])
-    with pytest.raises(ValidationError):
-        placement.value = "Y"  # ty: ignore[invalid-assignment] -- asserting the frozen model rejects this at runtime
+        setattr(model, field, value)
 
 
 def test_frozen_models_still_allow_in_place_extras_mutation() -> None:

@@ -46,12 +46,14 @@ exclude-newer = "P7D"
 
 [tool.ruff]
 line-length = 120
+cache-dir = ".cache/ruff"
 
 [tool.ruff.lint]
 select = [
     "ALL",
 ]
 ignore = [
+    "COM812", # (Trailing comma missing) - The formatter owns trailing commas
     "CPY001", # (Missing copyright notice at top of file) - No license
 ]
 
@@ -74,11 +76,14 @@ convention = "numpy"
 [tool.mypy]
 pretty = true
 plugins = ["pydantic.mypy"]
+cache_dir = ".cache/mypy"
 
 [tool.coverage.run]
 branch = true
 source_pkgs = ["palletinator"]
 source_dirs = ["tests"]
+data_file = ".cache/coverage/.coverage"
 
 [tool.pytest]
 strict = true
+cache_dir = ".cache/pytest"
