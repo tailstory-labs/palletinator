@@ -1,6 +1,6 @@
 [project]
 name = "palletinator"
-version = "0.2.0"
+version = "0.2.1"
 description = "Pallet-inator"
 authors = [
     { name = "Bradley Reynolds", email = "bradley.reynolds@tailstory.dev" },
@@ -13,12 +13,12 @@ dependencies = [
 ]
 
 [project.urls]
-repository = "https://github.com/tailstory-labs/palletinator"
-documentation = "https://tailstory-labs.github.io/palletinator/"
+repository = "https://github.com/tailstory/palletinator"
+documentation = "https://docs.tailstory.dev/palletinator/"
 
 [build-system]
-requires = ["setuptools>=83.0.0"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build"]
+build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
@@ -39,9 +39,10 @@ tests = [
     "pytest>=9.1.1",
     # Extensions
     "pytest-randomly>=4.0.1",
-    # Reporting
-    "allure-pytest>=2.15.3",
 ]
+
+[tool.uv]
+exclude-newer = "P7D"
 
 [tool.ruff]
 line-length = 120
@@ -81,4 +82,3 @@ source_dirs = ["tests"]
 
 [tool.pytest]
 strict = true
-junit_family = "xunit1"
