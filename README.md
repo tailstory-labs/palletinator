@@ -44,3 +44,7 @@ assert restored == pallet
 Here's a pallet-pus (get it?)
 
 ![palletpus](https://raw.githubusercontent.com/tailstory/palletinator/main/docs/static/palletpus.jpeg "Palletpus")
+
+## License
+
+Copyright 2026 Tailstory. [Apache 2.0](LICENSE).
