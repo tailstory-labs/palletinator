@@ -43,4 +43,4 @@ assert restored == pallet
 
 Here's a pallet-pus (get it?)
 
-![palletpus](https://raw.githubusercontent.com/tailstory/palletinator/main/docs/source/static/palletpus.jpeg "Palletpus")
+![palletpus](https://raw.githubusercontent.com/tailstory/palletinator/main/docs/static/palletpus.jpeg "Palletpus")
